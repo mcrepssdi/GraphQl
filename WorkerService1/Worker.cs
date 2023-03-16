@@ -18,7 +18,7 @@ public class Worker : BackgroundService
         while (!stoppingToken.IsCancellationRequested)
         {
             _logger.LogInformation("Worker running at: {time}", DateTimeOffset.Now);
-            List<Carrier> carriers = await _consumer.GetCarriers();
+            List<Carrier> carriers = await _consumer.GetCarriers(0, 5);
             
             carriers.ForEach(p =>
             {
