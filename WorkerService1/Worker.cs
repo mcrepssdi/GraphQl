@@ -19,6 +19,7 @@ public class Worker : BackgroundService
         {
             _logger.LogInformation("Worker running at: {time}", DateTimeOffset.Now);
             List<Carrier> carriers = await _consumer.GetCarriers(0, 5);
+            List<Carrier> carriersFromWhereClause = await _consumer.GetCarriersWhereClause(0, 5, "5 C");
             
             carriers.ForEach(p =>
             {
